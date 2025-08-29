@@ -1,0 +1,129 @@
+import cancion from "../assets/song.mp3";
+import Countdown from "./Countdown";
+import Lugares from "./Lugares";
+import GoogleCalendarButton from "./GoogleCalendarButton";
+import DressCode from "./DressCode";
+import DatosBancarios from "./DatosBancarios";
+import Asistencia from "./Asistencia";
+import Footer from "./Footer";
+import TextoFinal from "./TextoFinal";
+import MusicScreen from "./MusicScreen";
+
+const Invitacion = () => {
+
+
+  const targetDate = new Date("2025-12-06T13:00:00-03:00");
+
+  const colorPrincipal = "#d0bcab";
+  const colorSecundario = "#d0bcab";
+
+
+
+  return (
+    <div className="w-full relative font-quicksand overflow-hidden">
+
+      {/* Música */}
+        <div className="absolute">
+          <MusicScreen cancion={cancion} />
+        </div>
+
+      {/* Fondo y contenido principal */}
+      <div className="relative flex flex-col items-center justify-center h-screen w-full text-center bg-black  md:bg-transparent">
+        <div className="block md:hidden absolute inset-0">
+          <img src="https://res.cloudinary.com/dfschbyq2/image/upload/v1756475472/2_1_iuo4td.jpg" alt="Iniciales" className="absolute inset-0 w-full h-full object-cover opacity-60" />
+        </div>
+        <div
+          className="hidden md:block absolute text-gray-500 font-tangerine text-[10rem] md:text-[17rem]"
+          style={{
+            opacity: 0.1,
+            transform: "translateY(-50%)",
+            top: "50%",
+          }}
+        >
+          F M
+        </div>
+
+        {/* Texto superior */}
+        <p className="z-10 text-xl uppercase tracking-widest mb-10 font-cormorant text-white md:text-gray-800">
+          ¡Nos Casamos!
+        </p>
+
+        {/* Nombres completos */}
+        <h1 className="z-10 text-5xl md:text-7xl text-white md:text-gray-800 italic font-cormorant">
+          Valentina & Simón
+        </h1>
+
+        {/* Fecha */}
+        <p className="z-10 mt-15 text-xl font-cormorant text-white md:text-gray-800">
+          1 5 . 1 1 . 2 0 2 5
+        </p>
+      </div>
+
+      {/* Plantilla dinámica */}
+      <div>
+        {/* Contador */}
+          <section
+            id="contador"
+            className="bg-beige w-full flex flex-col items-center justify-center gap-y-5 py-10 font-thin"
+          >
+            <Countdown
+              containerClasses={
+                "w-full flex flex-col justify-center items-center gap-y-5"
+              }
+              targetDate={targetDate}
+            />
+          </section>
+        <section id="lugares" className="relative text-center">
+          <Lugares
+            iglesia="Iglesia Nuestra Señora del Tránsito"
+            hora_iglesia="16:30 hs"
+            salon="Quinta Doña Elvira"
+            hora_civil="18:30 hs"
+          />
+          
+        </section>
+          <div className="bg-[#d0bcab] mt-10 text-center text-white relative">
+            <GoogleCalendarButton
+              titleCalendar="Casamiento de Valentina y Simon"
+              fechaComienzo="20251115T163000"
+              fechaFin="20251116T000000"
+              salon="Iglesia Nuestra Señora del Tránsito"
+              imgClass="text-white"
+              buttonClass="bg-white text-gray-800 hover:bg-transparent hover:text-white border-2 border-white py-3 px-6 rounded-full font-semibold transform transition-transform duration-300 ease-in-out"
+            />
+          </div>
+          <div className="relative">
+            <DressCode dress_code="Formal" />
+          </div>
+          <DatosBancarios
+            texto="Si deseás hacernos un regalo te dejamos nuestros datos"
+            claseContenedor="bg-principal-light text-white"
+            textSize="text-lg"
+            background={{ backgroundColor: colorPrincipal }}
+            claseBotonModal={{
+              backgroundColor: colorSecundario,
+              borderColor: colorSecundario,
+            }}
+            styleBorderModal={{ borderColor: colorPrincipal }}
+            styleTextColor={{ color: colorPrincipal }}
+            cbu="2850406740095228990938"
+            alias="MUELLE.BRUJO.BOTA"
+            banco="Banco Macro"
+            nombre="GUERRA SIMON SANCHEZ"
+            claseModal="bg-principal-light"
+            borderModal="border-principal-light"
+            textColor="text-principal-light"
+          />
+          <Asistencia
+            clase="py-10 bg-fondo-banner"
+            claseButton="border-2 py-3 px-6 rounded-full border-gray-800 font-semibold hover:border-gray-700 hover:bg-white hover:text-gray:800"
+            linkAsistencia="https://docs.google.com/forms/d/e/1FAIpQLSexV2P3CTplkvCHYLfzcIcQiDTEZwF0r_nRCQEuQ6a3bf8CPA/viewform?usp=header"
+          />
+        <TextoFinal textoFinal="¡Gracias por venir!" />
+        <Footer />
+      </div>
+    </div>
+  );
+};
+
+export default Invitacion;
