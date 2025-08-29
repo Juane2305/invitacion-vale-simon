@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MusicPlayer from "./MusicPlayer";
 
-/**
- * Pregunta al usuario si quiere entrar con música o no.
- * Guarda la elección en localStorage para no volver a preguntar en la misma plantilla.
- * Sin embargo, el <MusicPlayer /> se renderiza siempre, 
- * permitiendo que el usuario active/desactive la música más tarde.
- *
- * @param {string} templateId  - Identificador de la plantilla (ej: "verona", "esmeralda")
- * @param {string} cancion     - Ruta o URL de la canción
- */
+
 export default function MusicScreen({ templateId, cancion }) {
   const localStorageKey = `musicChoice-${templateId}`;
 
