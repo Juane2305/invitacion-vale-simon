@@ -1,4 +1,4 @@
-import cancion from "../assets/song.mp3";
+import cancion from "/song.mp3";
 import Countdown from "./Countdown";
 import Lugares from "./Lugares";
 import GoogleCalendarButton from "./GoogleCalendarButton";
