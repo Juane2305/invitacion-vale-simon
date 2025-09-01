@@ -5,7 +5,7 @@ import 'aos/dist/aos.css';
 import MiIconoGift from './DatosBancariosIcon';
 
 
-const DatosBancarios = ({texto, claseContenedor, claseBoton, borderModal, textColor, textSize, cbu, alias, banco, nombre, claseBotonModal, claseModal, moneda_extranjera, tipo_cuenta, numero_cuenta, titular_extranjera, banco_extranjera, styleBotonModal, styleModal, styleBorderModal, styleTextColor, background}) => {
+const DatosBancarios = ({texto, claseContenedor, claseBoton, borderModal, textColor, textSize, cbu, alias, banco, nombre, claseBotonModal, claseModal, moneda_extranjera, tipo_cuenta, numero_cuenta, titular_extranjera, banco_extranjera, styleBotonModal, styleModal, styleBorderModal, styleTextColor}) => {
 
   useEffect(() => {
     AOS.init({
@@ -16,7 +16,7 @@ const DatosBancarios = ({texto, claseContenedor, claseBoton, borderModal, textCo
   }, []);
 
   return (
-    <div className={`pt-20 flex flex-col justify-center items-center py-20 gap-y-5 ${claseContenedor}`} style={background} >
+    <div className={`pt-20 flex flex-col justify-center items-center py-20 gap-y-5 ${claseContenedor} bg-[#a8ad9a]`} >
       <div data-aos= 'fade-up'>
         <MiIconoGift/>
       </div>

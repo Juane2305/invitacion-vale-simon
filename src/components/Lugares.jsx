@@ -3,8 +3,12 @@ import rings from '../assets/rings.svg'
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useLocation } from 'react-router-dom';
 
 const Places = ({iglesia, hora_iglesia, salon, hora_civil}) => {
+
+  const location = useLocation();
+  const isFiesta = location.pathname === "/fiesta";
 
   useEffect(() => {
     AOS.init({
@@ -17,20 +21,22 @@ const Places = ({iglesia, hora_iglesia, salon, hora_civil}) => {
   return (
     <div className='w-full pt-10 flex flex-col items-center gap-y-16'>
       <section className='flex flex-col gap-y-20 md:gap-y-0 md:flex-row justify-center gap-x-36'>
-        <div className=' flex flex-col justify-center items-center gap-y-3' data-aos= 'fade-right'>
-          <img src={rings} alt="" className='size-40'/>
-          <h2 className='text-center font-semibold text-2xl tracking-wider'>CEREMONIA</h2>
-          <p className='font-extralight text-xl text-center px-5 text-gray-700'>La ceremonia se realizará en {iglesia} <br /> a las <strong>{hora_iglesia}</strong></p>
-          <a href="https://maps.app.goo.gl/SN4tJGcd56mmhULh6" target="_blank" rel="noopener noreferrer">
-            <button className="border-2 border-gray-700 my-5 py-3 px-8 rounded-full text-gray-800 font-semibold hover:text-gray-600 transition">
-              CÓMO LLEGAR
-            </button>
-          </a>
-        </div>
+        {!isFiesta && (
+          <div className=' flex flex-col justify-center items-center gap-y-3' data-aos= 'fade-right'>
+            <img src={rings} alt="" className='size-40'/>
+            <h2 className='text-center font-semibold text-2xl tracking-wider'>CEREMONIA</h2>
+            <p className='font-extralight text-xl text-center px-5 text-gray-700'>La ceremonia se realizará en {iglesia} <br /> a las <strong>{hora_iglesia}</strong></p>
+            <a href="https://maps.app.goo.gl/SN4tJGcd56mmhULh6" target="_blank" rel="noopener noreferrer">
+              <button className="border-2 border-gray-700 my-5 py-3 px-8 rounded-full text-gray-800 font-semibold hover:text-gray-600 transition">
+                CÓMO LLEGAR
+              </button>
+            </a>
+          </div>
+        )}
         <div className=' flex flex-col justify-center items-center gap-y-3' data-aos= 'fade-left'>
           <img src={copas} alt="" className='size-40'/>
-          <h2 className='text-center font-semibold text-2xl tracking-wider'>CIVIL Y FIESTA</h2>
-          <p className='font-extralight text-xl text-center px-5 text-gray-700'>Continuaremos con el civil y la fiesta en {salon} <br /> a las <strong>{hora_civil}</strong></p>
+          <h2 className='text-center font-semibold text-2xl tracking-wider'>{!isFiesta? "CIVIL Y FIESTA" : "FIESTA"}</h2>
+          <p className='font-extralight text-xl text-center px-5 text-gray-700'>{!isFiesta? "Continuaremos con el civil y la fiesta en " : "La fiesta será en "} {salon} <br /> a las {!isFiesta? <strong>{hora_civil}</strong> : <strong>22:30 hs</strong>} </p>
           <a href="https://maps.app.goo.gl/zPrJBcQqaPu6WV1k7" target="_blank" rel="noopener noreferrer">
             <button className="border-2 border-gray-700 my-5 py-3 px-8 rounded-full text-gray-800 font-semibold hover:text-gray-600 transition">
               CÓMO LLEGAR

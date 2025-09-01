@@ -36,7 +36,7 @@ export default function MusicScreen({ templateId, cancion }) {
             </h2>
             <div className="flex flex-col gap-4">
               <button
-                className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                className="bg-[#a8ad9a] text-white py-2 rounded hover:bg-[#6b6e62] transition"
                 onClick={() => handleChoice("withMusic")}
               >
                 Con música

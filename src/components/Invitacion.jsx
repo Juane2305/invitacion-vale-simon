@@ -8,16 +8,17 @@ import Asistencia from "./Asistencia";
 import Footer from "./Footer";
 import TextoFinal from "./TextoFinal";
 import MusicScreen from "./MusicScreen";
+import { useLocation } from "react-router-dom";
 
 const Invitacion = () => {
+
+  const location = useLocation();
+  const isFiesta = location.pathname === "/fiesta";
 
 
   const targetDate = new Date("2025-12-06T13:00:00-03:00");
 
   const colorPrincipal = "#d0bcab";
-  const colorSecundario = "#d0bcab";
-
-
 
   return (
     <div className="w-full relative font-quicksand overflow-hidden">
@@ -28,11 +29,14 @@ const Invitacion = () => {
         </div>
 
       {/* Fondo y contenido principal */}
-      <div className="relative flex flex-col items-center justify-center h-screen w-full text-center bg-black  md:bg-transparent">
-        <div className="block md:hidden absolute inset-0">
+      <div className="relative flex flex-col items-center justify-center h-screen w-full text-center bg-black">
+        <div className="block absolute inset-0 md:hidden">
           <img src="https://res.cloudinary.com/dfschbyq2/image/upload/v1756475472/2_1_iuo4td.jpg" alt="Iniciales" className="absolute inset-0 w-full h-full object-cover opacity-60" />
         </div>
-        <div
+        <div className="md:block absolute inset-0 hidden">
+          <img src="https://res.cloudinary.com/dfschbyq2/image/upload/v1756759362/Disen%CC%83o_sin_ti%CC%81tulo_56_gp1cg7.jpg" alt="Iniciales" className="absolute inset-0 w-full h-full object-cover  opacity-60" />
+        </div>
+        {/* <div
           className="hidden md:block absolute text-gray-500 font-tangerine text-[10rem] md:text-[17rem]"
           style={{
             opacity: 0.1,
@@ -41,20 +45,20 @@ const Invitacion = () => {
           }}
         >
           F M
-        </div>
+        </div> */}
 
         {/* Texto superior */}
-        <p className="z-10 text-xl uppercase tracking-widest mb-10 font-cormorant text-white md:text-gray-800">
+        <p className="z-10 text-xl uppercase tracking-widest mb-10 font-cormorant text-white ">
           ¡Nos Casamos!
         </p>
 
         {/* Nombres completos */}
-        <h1 className="z-10 text-5xl md:text-7xl text-white md:text-gray-800 italic font-cormorant">
+        <h1 className="z-10 text-5xl md:text-7xl text-white  italic font-cormorant">
           Valentina & Simón
         </h1>
 
         {/* Fecha */}
-        <p className="z-10 mt-15 text-xl font-cormorant text-white md:text-gray-800">
+        <p className="z-10 mt-15 text-xl font-cormorant text-white ">
           1 5 . 1 1 . 2 0 2 5
         </p>
       </div>
@@ -82,7 +86,8 @@ const Invitacion = () => {
           />
           
         </section>
-          <div className="bg-[#d0bcab] mt-10 text-center text-white relative">
+        {!isFiesta? (
+          <div className="bg-[#a8ad9a] mt-10 text-center text-white relative">
             <GoogleCalendarButton
               titleCalendar="Casamiento de Valentina y Simon"
               fechaComienzo="20251115T163000"
@@ -91,34 +96,55 @@ const Invitacion = () => {
               imgClass="text-white"
               buttonClass="bg-white text-gray-800 hover:bg-transparent hover:text-white border-2 border-white py-3 px-6 rounded-full font-semibold transform transition-transform duration-300 ease-in-out"
             />
+          </div>)
+          : (
+            <div className="bg-[#a8ad9a] mt-10 text-center text-white relative">
+            <GoogleCalendarButton
+              titleCalendar="Casamiento de Valentina y Simon"
+              fechaComienzo="20251115T223000"
+              fechaFin="20251116T050000"
+              salon="Quinta Doña Elvira, Maipú"
+              imgClass="text-white"
+              buttonClass="bg-white text-gray-800 hover:bg-transparent hover:text-white border-2 border-white py-3 px-6 rounded-full font-semibold transform transition-transform duration-300 ease-in-out"
+            />
           </div>
+          )  
+        }
           <div className="relative">
             <DressCode dress_code="Formal" />
           </div>
-          <DatosBancarios
-            texto="Si deseás hacernos un regalo te dejamos nuestros datos"
-            claseContenedor="bg-principal-light text-white"
-            textSize="text-lg"
-            background={{ backgroundColor: colorPrincipal }}
-            claseBotonModal={{
-              backgroundColor: colorSecundario,
-              borderColor: colorSecundario,
-            }}
-            styleBorderModal={{ borderColor: colorPrincipal }}
-            styleTextColor={{ color: colorPrincipal }}
-            cbu="2850406740095228990938"
-            alias="MUELLE.BRUJO.BOTA"
-            banco="Banco Macro"
-            nombre="GUERRA SIMON SANCHEZ"
-            claseModal="bg-principal-light"
-            borderModal="border-principal-light"
-            textColor="text-principal-light"
-          />
-          <Asistencia
+          {!isFiesta && (
+            <DatosBancarios
+              texto="Si deseás hacernos un regalo te dejamos nuestros datos"
+              claseContenedor=" text-white"
+              textSize="text-lg"
+              background={{ backgroundColor: colorPrincipal }}
+              claseBotonModal={{
+                backgroundColor: 'white',
+                borderColor: '#a8ad9a',
+              }}
+              styleBorderModal={{ borderColor: '#a8ad9a' }}
+              cbu="2850406740095228990938"
+              alias="MUELLE.BRUJO.BOTA"
+              banco="Banco Macro"
+              nombre="GUERRA SIMON SANCHEZ"
+            />
+          )}
+          {!isFiesta? (
+            <Asistencia
+              clase="py-10 bg-fondo-banner"
+              claseButton="border-2 py-3 px-6 rounded-full border-gray-800 font-semibold hover:border-gray-700 hover:bg-white hover:text-gray:800"
+              linkAsistencia="https://docs.google.com/forms/d/e/1FAIpQLSexV2P3CTplkvCHYLfzcIcQiDTEZwF0r_nRCQEuQ6a3bf8CPA/viewform?usp=header"
+            />
+          )
+          :
+          (
+            <Asistencia
             clase="py-10 bg-fondo-banner"
             claseButton="border-2 py-3 px-6 rounded-full border-gray-800 font-semibold hover:border-gray-700 hover:bg-white hover:text-gray:800"
-            linkAsistencia="https://docs.google.com/forms/d/e/1FAIpQLSexV2P3CTplkvCHYLfzcIcQiDTEZwF0r_nRCQEuQ6a3bf8CPA/viewform?usp=header"
+            linkAsistencia="https://docs.google.com/forms/d/e/1FAIpQLScGgF7oxHRdrpfe2vW8t_RWcuIXlPr3JH3qVOaNq46_drwBqA/viewform?usp=header"
           />
+          )}
         <TextoFinal textoFinal="¡Gracias por venir!" />
         <Footer />
       </div>

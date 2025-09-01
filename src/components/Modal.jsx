@@ -18,7 +18,6 @@ export const Modal = ({
   banco_extranjera,
   styleModal,
   styleBorderModal,
-  styleTextColor,
 }) => {
   useEffect(() => {
     AOS.init({
@@ -51,7 +50,7 @@ export const Modal = ({
       </button>
 
       <div className={`fixed inset-0 ${claseModal} bg-black/70 flex justify-center items-center z-50 transition-opacity duration-500 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} style={styleModal}>
-        <div className={`bg-white p-10 rounded-lg flex flex-col justify-center items-center border-2 ${borderModal} transform transition-transform duration-500 ease-in-out ${isOpen ? 'scale-100' : 'scale-95'}`} style={styleBorderModal}>
+        <div className={`bg-white p-10 rounded-lg flex flex-col justify-center items-center border-4 ${borderModal} transform transition-transform duration-500 ease-in-out ${isOpen ? 'scale-100' : 'scale-95'}`} style={styleBorderModal}>
           <div className="flex flex-col justify-center text-center space-y-7 text-gray-900 w-full max-w-md ">
             <h2 className="font-bold text-2xl">Datos Bancarios</h2>
             {moneda_extranjera && moneda_extranjera.trim() !== "" && (
@@ -65,14 +64,14 @@ export const Modal = ({
               <p className="text-lg flex justify-between items-center">
                 <span><span className="font-semibold">CBU:</span> {cbu}</span>
                 <button onClick={() => copiarTexto(cbu)}>
-                  <IoCopyOutline style={styleTextColor} className="ml-2" />
+                  <IoCopyOutline className="ml-2 text-[#a8ad9a]" />
                 </button>
               </p>
 
               <p className="text-lg flex justify-between items-center">
                 <span><span className="font-semibold">Alias:</span> {alias}</span>
                 <button onClick={() => copiarTexto(alias)}>
-                  <IoCopyOutline style={styleTextColor} className="ml-2" />
+                  <IoCopyOutline  className="ml-2 text-[#a8ad9a]" />
                 </button>
               </p>
 
@@ -88,7 +87,7 @@ export const Modal = ({
                   <p className="text-lg flex justify-between items-center">
                     <span><span className="font-semibold">{tipo_cuenta}: </span>{numero_cuenta}</span>
                     <button onClick={() => copiarTexto(numero_cuenta)}>
-                      <IoCopyOutline style={styleTextColor} className="ml-2" />
+                      <IoCopyOutline  className="ml-2 text-[#a8ad9a]" />
                     </button>
                   </p>
 
@@ -104,7 +103,7 @@ export const Modal = ({
             )}
 
             <button
-              className={`py-4 rounded-lg text-white font-bold hover:bg-transparent hover:transition hover:text-gray-900 border-4 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg`} style={claseBotonModal}
+              className={`py-4 rounded-lg text-gray-700 font-bold hover:bg-transparent hover:transition hover:text-gray-900 border-4 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg`} style={claseBotonModal}
               onClick={() => setIsOpen(false)}
             >
               Cerrar
