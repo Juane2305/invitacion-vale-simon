@@ -16,7 +16,7 @@ const Invitacion = () => {
   const isFiesta = location.pathname === "/fiesta";
 
 
-  const targetDate = new Date("2025-12-06T13:00:00-03:00");
+  const targetDate = new Date("2025-11-15T16:30:00-03:00");
 
   const colorPrincipal = "#d0bcab";
 
